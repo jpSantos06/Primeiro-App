@@ -1,0 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&display=swap');
+:root { font-family: 'DM Sans', sans-serif; color: #202238; background: #f8f8fc; font-synthesis: none; text-rendering: optimizeLegibility; }
+* { box-sizing: border-box; }
+body { margin: 0; min-width: 320px; }
+.header { background: #242044; color: white; padding: 26px 20px; }
+.header-content { width: min(1080px, 100%); margin: 0 auto; display: flex; align-items: center; gap: 28px; }
+.logo { font-size: 1.5rem; font-weight: 800; }
+.logo span { color: #a99fff; }
+.header h1 { font-size: 1.1rem; font-weight: 600; margin: 0; }
+.footer { text-align: center; padding: 26px 20px; background: #242044; color: #c9c5e6; font-size: .9rem; }
+.footer p { margin: 0; }
+@media (max-width: 560px) { .header-content { align-items: flex-start; flex-direction: column; gap: 8px; } }
