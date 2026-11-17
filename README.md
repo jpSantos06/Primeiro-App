@@ -1,63 +1,81 @@
-# Primeiro App React
+# Primeiro App React — Biblioteca UI com Tailwind CSS
 
-Primeira aplicação React desenvolvida com Vite para praticar JSX, componentização, props e renderização de listas.
+Projeto desenvolvido com React + Vite para praticar a criação de componentes reutilizáveis e estilizados com Tailwind CSS.
 
 ## Tecnologias
-- React
+- React 19
 - Vite
+- Tailwind CSS 3
+- PostCSS e Autoprefixer
 - JavaScript (JSX)
-- CSS
 
-## Estrutura do projeto
+## Instalação e execução
 
-```text
-Primeiro-App/
-├── index.html
-├── package.json
-├── vite.config.js
-└── src/
-    ├── main.jsx
-    ├── App.jsx
-    ├── App.css
-    ├── index.css
-    └── components/
-        ├── Header.jsx
-        ├── Footer.jsx
-        ├── Card.jsx
-        └── Lista.jsx
-```
-
-## Componentes
-- **Header:** recebe o título por props e apresenta o cabeçalho.
-- **Footer:** recebe por props o texto do rodapé.
-- **Card:** recebe título, descrição e número por props.
-- **Lista:** recebe um array de strings pela prop `itens` e utiliza `.map()` para criar os elementos `<li>`, cada um com uma `key` única.
-- **App:** importa e organiza os componentes. Utiliza Fragment (`<>`) para agrupar os elementos sem criar uma tag extra no DOM.
-
-## Como executar localmente
-
-É necessário ter Node.js e npm instalados.
+Tenha Node.js e npm instalados. Na pasta do projeto, execute:
 
 ```bash
 npm install
 npm run dev
 ```
 
-Abra no navegador o endereço local exibido pelo Vite (normalmente `http://localhost:5173`).
+O Vite exibirá o endereço local para abrir no navegador (normalmente `http://localhost:5173`).
 
-Para gerar a versão de produção:
+Para validar a versão de produção:
 
 ```bash
 npm run build
 npm run preview
 ```
 
-## Reflexão: abordagem imperativa e declarativa
+## Configuração do Tailwind
 
-Na abordagem imperativa, usada no JavaScript puro, o desenvolvedor descreve passo a passo como a interface deve ser modificada, selecionando elementos do DOM e alterando seu conteúdo, atributos ou estilos manualmente. Já na abordagem declarativa do React, o desenvolvedor descreve como a interface deve aparecer de acordo com os dados e estados atuais. Quando esses dados mudam, o React atualiza a interface para refletir o novo resultado, reduzindo a necessidade de manipular o DOM diretamente.
+O arquivo `tailwind.config.js` contém a configuração de varredura:
 
-O Virtual DOM é uma representação leve da estrutura da interface. Quando ocorre uma atualização, o React compara a nova representação com a anterior (processo conhecido como reconciliação) e calcula quais mudanças são necessárias no DOM real. Assim, evita alterações manuais e desnecessárias em toda a página, aplicando apenas as atualizações pertinentes. Isso pode melhorar a eficiência e tornar a manutenção da interface mais simples.
+```js
+content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}']
+```
 
-## Objetivo da atividade
+Assim, o Tailwind identifica as classes utilizadas nos arquivos da pasta `src`. O arquivo `postcss.config.js` habilita Tailwind e Autoprefixer. As diretivas `@tailwind base`, `@tailwind components` e `@tailwind utilities` estão em `src/index.css`, importado por `src/main.jsx`.
 
-Compreender os fundamentos do React, a sintaxe JSX, a reutilização de componentes funcionais, a passagem de dados por props e a renderização de listas com `.map()`.
+## Componentes da biblioteca
+
+- **Button:** aceita `variant` (`primary`, `secondary`, `danger`, `outline`), `size`, `disabled`, `type` e `onClick`.
+- **Badge:** aceita `variant` (`success`, `warning`, `error`, `info`, `neutral`).
+- **Input:** aceita propriedades como `label`, `type`, `placeholder`, `value`, `onChange`, `helperText` e `error`.
+- **Card:** refatorado para utilizar classes utilitárias do Tailwind.
+- **Alert:** aceita `variant` (`success`, `error` ou `warning`), `title` e conteúdo via children.
+- **Header**, **Footer** e **Lista:** componentes anteriores mantidos e adaptados ao Tailwind.
+
+As classes para variações visuais são definidas em mapas de classes completos (por exemplo, `variants`) em vez de montar nomes de classes dinamicamente. Isso permite que o Tailwind detecte as classes durante a compilação.
+
+## Estrutura principal
+
+```text
+Primeiro-App/
+├── tailwind.config.js
+├── postcss.config.js
+├── package.json
+└── src/
+    ├── main.jsx
+    ├── App.jsx
+    ├── index.css
+    └── components/
+        ├── Header.jsx
+        ├── Footer.jsx
+        ├── Card.jsx
+        ├── Lista.jsx
+        ├── Button.jsx
+        ├── Badge.jsx
+        ├── Input.jsx
+        └── Alert.jsx
+```
+
+## Reflexão: vantagens e desvantagens do Tailwind CSS
+
+Uma das principais vantagens do Tailwind CSS é permitir que a estilização seja feita diretamente no JSX por meio de classes utilitárias. Isso agiliza a criação de interfaces, facilita a padronização visual e reduz a necessidade de manter muitos arquivos CSS separados. Também torna simples criar variações de componentes usando props, pois podemos selecionar conjuntos de classes para cada variante.
+
+Como desvantagens, o JSX pode ficar com muitas classes e parecer mais difícil de ler quando os componentes são grandes. A equipe também precisa aprender a lógica das classes utilitárias e manter padrões para evitar repetição. Além disso, estilos muito específicos ou complexos podem exigir configuração adicional ou CSS tradicional. Portanto, Tailwind oferece velocidade e consistência, mas precisa de organização para que os componentes continuem claros e reutilizáveis.
+
+## Objetivo
+
+Dominar a estilização com Tailwind CSS e compreender como criar componentes React flexíveis, reutilizáveis e configuráveis por props.
